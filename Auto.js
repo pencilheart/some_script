@@ -11,7 +11,7 @@ if (iszotero) {
     items = [
         {
             getField: function (field) {
-                if (field === 'title') return "La2(Zr0.7Ce0.3)2O7/8YSZ"; // 示例标题
+                if (field === 'title') return "TC4 DD6 Yb2Si2O7/La2(Zr0.7Ce0.3)2O7"; // 示例标题
                 return '';
             },
         }
@@ -41,8 +41,9 @@ for (let item of items) {
             }
         
             // 使用 split 进一步分割每个块，按字符逐个处理
-            let plocks = block.split(/(\d+[-−]x[A-Za-z]+x|x[A-Za-z]+\d+[-−]x|\d+[-−]y[A-Za-z]+y|y[A-Za-z]+\d+[-−]y|\d+[+-−][ıδx]|\d+wt.%|[A-Za-z][-/]\d+|\d+[/]\d+\S|\d+[/\.]\d+|\d{3,}|\d+[-–]\d+|\d+[-–]\S|\d+[+-]|\d+)/);  // 使用正则进行分割
-        
+            let plocks = block.split(new RegExp(
+                `(${specificTermsRegex}|\\d+[-−]x[A-Za-z]+x|x[A-Za-z]+\\d+[-−]x|\\d+[-−]y[A-Za-z]+y|y[A-Za-z]+\\d+[-−]y|\\d+[+-−][ıδx]|\\d+wt.%|[A-Za-z][-/]\\d+|\\d+[/]\\d+\\S|\\d+[/\\.]\\d+|\\d{3,}|\\d+[-–]\\d+|\\d+[-–]\\S|\\d+[+-]|\\d+)`
+              ));
             let processedBlock = plocks.map((plock) => {
                 if (!plock) return ''; // 如果 plock 是 undefined 或 null，则返回空字符串
                 else if (plock.match(/\d+[-−]x[A-Za-z]+x/)) {
