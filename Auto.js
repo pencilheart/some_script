@@ -56,28 +56,33 @@ for (let item of items) {
                 block = block.replace(new RegExp("^" + start.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')), ''); // 转义并去除起始数字
             }
             console.log('block:',block) // log
-            let plocks = [];
-            let remainingBlock = block;
             
+            let plocks = new Array(block.length).fill(null);  // 创建与原始字符串相同长度的数组
+            let remainingBlock = block;
+
             regexRules.forEach((regex) => {
                 let match;
                 let newRemainingBlock = "";  // 存储当前 regex 无法匹配的部分
+
                 while ((match = remainingBlock.match(regex)) !== null) {
                     let index = match.index;
                     if (index > 0) newRemainingBlock += remainingBlock.slice(0, index);  // 保存未匹配的前缀
-                    plocks.push(match[0]);  // 保存匹配到的部分
+                    plocks[index] = match[0];  // 在相应位置填充匹配到的部分
                     remainingBlock = remainingBlock.slice(index + match[0].length);  // 继续匹配剩下的部分
                 }
+
                 // 将未匹配的部分加入新的 remainingBlock，并继续用下一个正则匹配
                 remainingBlock = newRemainingBlock + remainingBlock;
-                // console.log('remainingBlock:', remainingBlock);  // log
             });
-            // console.log('remainingBlock:',remainingBlock) // log
-            console.log('added plocks:', plocks);  // log
 
-            if (remainingBlock.length > 0) plocks.push(remainingBlock);
-            
-            console.log('remain plocks:', plocks);  // log
+            // 将剩余的字符按原位置填充到 plocks 中
+            for (let i = 0; i < remainingBlock.length; i++) {
+                if (plocks[i] === null) {  // 确保该位置没有被匹配项占据
+                    plocks[i] = remainingBlock[i];
+                }
+            }
+
+            console.log('added plocks:', plocks);  // log
 
             plocks = plocks.map((plock) => {
                 console.log('plock:',plock) // log
