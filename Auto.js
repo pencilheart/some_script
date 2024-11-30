@@ -2,8 +2,8 @@ let iszotero = false;
 let restore = false;  // 还原为true
 
 
-let title = "";
-let items = {};
+let title;
+let items;
 
 if (iszotero) {
     items = Zotero.getActiveZoteroPane().getSelectedItems();
@@ -11,7 +11,7 @@ if (iszotero) {
     items = [
         {
             getField: function (field) {
-                if (field === 'title') return "ZrxY0.5−x/2Ta0.5−x/2O2"; // 示例标题
+                if (field === 'title') return "La2(Zr0.7Ce0.3)2O7/8YSZ"; // 示例标题
                 return '';
             },
         }
@@ -55,23 +55,32 @@ for (let item of items) {
                 start = matchResult[0]; // 提取起始数字
                 block = block.replace(new RegExp("^" + start.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')), ''); // 转义并去除起始数字
             }
-
+            console.log('block:',block) // log
             let plocks = [];
             let remainingBlock = block;
-
+            
             regexRules.forEach((regex) => {
                 let match;
+                let newRemainingBlock = "";  // 存储当前 regex 无法匹配的部分
                 while ((match = remainingBlock.match(regex)) !== null) {
                     let index = match.index;
-                    if (index > 0) plocks.push(remainingBlock.slice(0, index));
-                    plocks.push(match[0]);
-                    remainingBlock = remainingBlock.slice(index + match[0].length);
+                    if (index > 0) newRemainingBlock += remainingBlock.slice(0, index);  // 保存未匹配的前缀
+                    plocks.push(match[0]);  // 保存匹配到的部分
+                    remainingBlock = remainingBlock.slice(index + match[0].length);  // 继续匹配剩下的部分
                 }
+                // 将未匹配的部分加入新的 remainingBlock，并继续用下一个正则匹配
+                remainingBlock = newRemainingBlock + remainingBlock;
+                // console.log('remainingBlock:', remainingBlock);  // log
             });
+            // console.log('remainingBlock:',remainingBlock) // log
+            console.log('added plocks:', plocks);  // log
 
             if (remainingBlock.length > 0) plocks.push(remainingBlock);
+            
+            console.log('remain plocks:', plocks);  // log
 
             plocks = plocks.map((plock) => {
+                console.log('plock:',plock) // log
                 if (!plock) return ''; // 如果 plock 是 undefined 或 null，则返回空字符串
                 else if (plock.match(/\d+[-−]x[A-Za-z]+x/)) {
                     return plock.replace(/(\d+[-−]x)/, '<sub>$1</sub>').replace(/([A-Za-z]+)x/, '$1<sub>x</sub>'); // 1-x and x
@@ -110,7 +119,7 @@ for (let item of items) {
             await item.setField('title', newTitle);
             await item.saveTx();
         } else {
-            console.log(newTitle);
+            console.log('newTitle:',newTitle);
         }
     }
 }
