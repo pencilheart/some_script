@@ -11,14 +11,14 @@ if (iszotero) {
     items = [
         {
             getField: function (field) {
-                if (field === 'title') return "TC4 DD6 Yb2Si2O7/La2(Zr0.7Ce0.3)2O7"; // 示例标题
+                if (field === 'title') return "ZrxY0.5−x/2Ta0.5−x/2O2 TC4 DD6 Yb2Si2O7/La2(Zr0.7Ce0.3)2O7"; // 示例标题
                 return '';
             },
         }
     ];
 }
 
-let specificTerms = ['8YSZ', '7YSZ', 'F4', 'DD6', 'TA2', 'TC4', 'WC17', '3D', '45Cr', 'β21s', 'AZ91D', 'C3X', 'CF6', '80C2']; // 可以在这里添加更多的特殊字符
+let specificTerms = ['8YSZ', '7YSZ', 'F4', 'DD6', 'TA2', 'TC4', 'Ni20Cr','AlSi50','WC17', '3D', '45Cr', 'β21s', 'AZ91D', 'C3X', 'CF6', '80C2']; // 可以在这里添加更多的特殊字符
 const specificTermsRegex = specificTerms.join('|');
 
 for (let item of items) {
@@ -37,12 +37,12 @@ for (let item of items) {
             let matchResult = block.match(/^([\(]?\d+[/\.]\d+|\d+)/);  // 提取数字
             if (matchResult) {
                 start = matchResult[0];  // 提取起始数字
-                block = block.replace(new RegExp("^" + start.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')), '');  // 去除起始数字
+                block = block.replace(new RegExp("^" + start.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')), '');  // 转义去除起始数字
             }
         
-            // 使用 split 进一步分割每个块，按字符逐个处理
+            // 使用 split 进一步分割每个块，按字符逐个处理【不可内部|，只能逐个|，否则字符增多】
             let plocks = block.split(new RegExp(
-                `(${specificTermsRegex}|\\d+[-−]x[A-Za-z]+x|x[A-Za-z]+\\d+[-−]x|\\d+[-−]y[A-Za-z]+y|y[A-Za-z]+\\d+[-−]y|\\d+[+-−][ıδx]|\\d+wt.%|[A-Za-z][-/]\\d+|\\d+[/]\\d+\\S|\\d+[/\\.]\\d+|\\d{3,}|\\d+[-–]\\d+|\\d+[-–]\\S|\\d+[+-]|\\d+)`
+                `(${specificTermsRegex}|\\d+[-−]x[A-Za-z]+x|x[A-Za-z]+\\d+[-−]x|\\d+[-−]y[A-Za-z]+y|y[A-Za-z]+\\d+[-−]y|\\d+\\.\\d+[+-−][ıδx]|\\d+[+-−][ıδx]|\\d+wt.%|[A-Za-z][-/]\\d+|\\d+[/]\\d+\\S|\\d+[/\\.]\\d+|\\d{3,}|\\d+[-–]\\d+|\\d+[-–]\\S|\\d+[+-]|\\d+)`
               ));
             let processedBlock = plocks.map((plock) => {
                 if (!plock) return ''; // 如果 plock 是 undefined 或 null，则返回空字符串
