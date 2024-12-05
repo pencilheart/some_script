@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "启动程序",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/Auto.js",
+            "runtimeExecutable": "/Users/jiaqihan/.nvm/versions/node/v23.3.0/bin/node"
+        }
+    ]
+}
