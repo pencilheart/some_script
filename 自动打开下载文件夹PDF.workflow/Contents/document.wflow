@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>526</string>
+	<key>AMApplicationVersion</key>
+	<string>2.10</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.1.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>访达</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>fileNames</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Get Specified Finder Items.action</string>
+				<key>ActionName</key>
+				<string>获得指定的访达项目</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>fileNames</key>
+					<array>
+						<string>~/Downloads/高速可压缩涡轮气膜冷却流动和传热特性数值研究_孙信猛.pdf</string>
+					</array>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.SpecifiedFiles</string>
+				<key>CFBundleVersion</key>
+				<string>1.1.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>SpecifiedFilesAction</string>
+				<key>Disabled</key>
+				<true/>
+				<key>InputUUID</key>
+				<string>CC33B381-BA6B-4179-964C-4A206618063D</string>
+				<key>Keywords</key>
+				<array>
+					<string>文件</string>
+					<string>选取</string>
+					<string>查找</string>
+					<string>获得</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>69239403-51FB-4D77-AF89-10961B020B6A</string>
+				<key>UUID</key>
+				<string>C357CEA6-8F82-49CD-A293-91039DDC47CE</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<array/>
+						<key>name</key>
+						<string>fileNames</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>0</integer>
+				<key>location</key>
+				<string>491.500000:111.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Get Specified Finder Items.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array/>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>2.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>自动操作</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>pauseDuration</key>
+					<dict/>
+					<key>pauseUnit</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array/>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Pause.action</string>
+				<key>ActionName</key>
+				<string>暂停</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>pauseDuration</key>
+					<integer>1</integer>
+					<key>pauseUnit</key>
+					<integer>0</integer>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.Pause</string>
+				<key>CFBundleVersion</key>
+				<string>2.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<true/>
+				<key>CanShowWhenRun</key>
+				<false/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>PauseAction</string>
+				<key>Disabled</key>
+				<false/>
+				<key>InputUUID</key>
+				<string>265671EE-C829-4122-BFDD-213AE6AEFA04</string>
+				<key>Keywords</key>
+				<array>
+					<string>时间</string>
+					<string>等待</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>26E54F22-D7E6-4F45-B373-4D59D35B722B</string>
+				<key>UUID</key>
+				<string>381279E3-44E3-4793-A47F-A7BC605A571B</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>pauseDuration</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>pauseUnit</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>491.500000:213.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Pause.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<false/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>2.1.1</string>
+				<key>AMApplication</key>
+				<array>
+					<string>访达</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>itemType</key>
+					<dict/>
+					<key>predicate</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMRequiredResources</key>
+				<array/>
+				<key>AMSelectedInputType</key>
+				<string>com.apple.cocoa.path</string>
+				<key>AMSelectedOutputType</key>
+				<string>com.apple.cocoa.path</string>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Filter Finder Items 2.action</string>
+				<key>ActionName</key>
+				<string>过滤“访达”项目</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>itemType</key>
+					<string>com.apple.cocoa.path</string>
+					<key>predicate</key>
+					<data>
+					YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25Z
+					JGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGG
+					oF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290
+					gAGvEBYLDBMYICorLTQ4PT5BRUlOT1JaXmJk
+					VSRudWxs0w0ODxAREl8QF05TQ29tcG91bmRQ
+					cmVkaWNhdGVUeXBlXxAPTlNTdWJwcmVkaWNh
+					dGVzViRjbGFzcxABgAKAFdIUDxUXWk5TLm9i
+					amVjdHOhFoADgBTUDxkaGxwdHh9fEBFOU1Jp
+					Z2h0RXhwcmVzc2lvbl8QEE5TTGVmdEV4cHJl
+					c3Npb25fEBNOU1ByZWRpY2F0ZU9wZXJhdG9y
+					gBOADoAEgBHVISIjJA8lJicoKVlOU09wZXJh
+					bmReTlNTZWxlY3Rvck5hbWVfEBBOU0V4cHJl
+					c3Npb25UeXBlW05TQXJndW1lbnRzgAaABRAD
+					gAiADVx2YWx1ZUZvcktleTrSIw8QLIAH0i4v
+					MDFaJGNsYXNzbmFtZVgkY2xhc3Nlc18QEE5T
+					U2VsZkV4cHJlc3Npb26jMDIzXE5TRXhwcmVz
+					c2lvblhOU09iamVjdNIUDzU3oTaACYAM0w8j
+					OTo7PFlOU0tleVBhdGiACxAKgApUa2luZNIu
+					Lz9AXxAcTlNLZXlQYXRoU3BlY2lmaWVyRXhw
+					cmVzc2lvbqM/MjPSLi9CQ15OU011dGFibGVB
+					cnJheaNCRDNXTlNBcnJhedIuL0ZHXxATTlNL
+					ZXlQYXRoRXhwcmVzc2lvbqRGSDIzXxAUTlNG
+					dW5jdGlvbkV4cHJlc3Npb27TSiMPS0xNXxAP
+					TlNDb25zdGFudFZhbHVlgA8QAIAQEAfSLi9Q
+					UV8QGU5TQ29uc3RhbnRWYWx1ZUV4cHJlc3Np
+					b26jUDIz1Q9TVFVWV0xYTFlaTlNNb2RpZmll
+					clhOU05lZ2F0ZVlOU09wdGlvbnNeTlNPcGVy
+					YXRvclR5cGWAEggQBNIuL1tcXxAbTlNFcXVh
+					bGl0eVByZWRpY2F0ZU9wZXJhdG9yo1tdM18Q
+					E05TUHJlZGljYXRlT3BlcmF0b3LSLi9fYF8Q
+					FU5TQ29tcGFyaXNvblByZWRpY2F0ZaNfYTNb
+					TlNQcmVkaWNhdGXSLi9EY6JEM9IuL2VmXxAT
+					TlNDb21wb3VuZFByZWRpY2F0ZaNlYTMACAAR
+					ABoAJAApADIANwBJAEwAUQBTAGwAcgB5AJMA
+					pQCsAK4AsACyALcAwgDEAMYAyADRAOUA+AEO
+					ARABEgEUARYBIQErAToBTQFZAVsBXQFfAWEB
+					YwFwAXUBdwF8AYcBkAGjAacBtAG9AcIBxAHG
+					AcgBzwHZAdsB3QHfAeQB6QIIAgwCEQIgAiQC
+					LAIxAkcCTAJjAmoCfAJ+AoACggKEAokCpQKp
+					ArQCvwLIAtIC4QLjAuQC5gLrAwkDDQMjAygD
+					QANEA1ADVQNYA10DcwAAAAAAAAIBAAAAAAAA
+					AGcAAAAAAAAAAAAAAAAAAAN3
+					</data>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.FilterFinderItems2</string>
+				<key>CFBundleVersion</key>
+				<string>2.1.1</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>Filter_Finder_Items_2</string>
+				<key>Disabled</key>
+				<false/>
+				<key>InputUUID</key>
+				<string>88B93E7D-C989-44D9-AFE4-F9E6218DF538</string>
+				<key>Keywords</key>
+				<array/>
+				<key>OutputUUID</key>
+				<string>364304BE-A11B-4641-BC55-38956883A678</string>
+				<key>UUID</key>
+				<string>CDF727F9-E6B0-4467-BB3F-55987E3C499C</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>com.apple.cocoa.path</string>
+						<key>name</key>
+						<string>itemType</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<data>
+						</data>
+						<key>name</key>
+						<string>predicate</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>491.500000:386.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Filter Finder Items 2.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>2.0.3</string>
+				<key>AMApplication</key>
+				<array>
+					<string>自动操作</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<dict/>
+					<key>CheckedForUserDefaultShell</key>
+					<dict/>
+					<key>inputMethod</key>
+					<dict/>
+					<key>shell</key>
+					<dict/>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run Shell Script.action</string>
+				<key>ActionName</key>
+				<string>运行Shell脚本</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<string>#!/bin/bash
+
+# Function to show notification using AppleScript
+function notify() {
+    /usr/bin/osascript -e "display notification \"$1\" with title \"$2\""
+}
+
+# Iterate over dmg files passed by Automator
+for dmg in "$@"; do
+    # Extract the filename from the full path
+    dmg_name=$(basename "$dmg")
+
+    # Notify user about mounting the DMG
+    notify "挂载： $dmg_name" "DMG Installer"
+
+    # Mount DMG file
+    MOUNT_DIR=$(hdiutil attach "$dmg" -nobrowse | grep Volumes | awk '{for (i=3; i&lt;=NF; i++) printf $i""FS; print ""}' | sed 's/ *$//')
+    
+    # Notify user about copying the application
+    # notify "Copying application from $MOUNT_DIR" "DMG Installer"
+
+    # Find the application in the mounted DMG
+    APP_PATH=$(find "$MOUNT_DIR" -name "*.app" -maxdepth 1 -print -quit)
+    if [ -n "$APP_PATH" ]; then
+        # Copy the application to the Applications folder
+        cp -r "$APP_PATH" "/Applications/"
+        # Notify user about the successful copy
+        # notify "Copied $(basename "$APP_PATH") to Applications" "DMG Installer"
+        notify "安装完成： $dmg_name" "DMG Installer"
+    else
+        notify "没找到 app：$dmg_name" "DMG Installer"
+    fi
+
+    # Unmount and delete the DMG file
+    hdiutil detach "$MOUNT_DIR"
+    rm "$dmg"
+    # notify "删除： $dmg_name" "DMG Installer"
+done
+
+exit 0</string>
+					<key>CheckedForUserDefaultShell</key>
+					<true/>
+					<key>inputMethod</key>
+					<integer>1</integer>
+					<key>shell</key>
+					<string>/bin/bash</string>
+					<key>source</key>
+					<string></string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.RunShellScript</string>
+				<key>CFBundleVersion</key>
+				<string>2.0.3</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunShellScriptAction</string>
+				<key>Disabled</key>
+				<true/>
+				<key>InputUUID</key>
+				<string>3936FEEE-A012-45E6-8877-DA08D0B60FED</string>
+				<key>Keywords</key>
+				<array>
+					<string>Shell</string>
+					<string>脚本</string>
+					<string>命令</string>
+					<string>运行</string>
+					<string>Unix</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>CB062CFA-2A78-4555-860D-1512E62760CD</string>
+				<key>UUID</key>
+				<string>3F980085-46A1-4954-BAA2-E844D80B44FF</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>inputMethod</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>CheckedForUserDefaultShell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+					<key>3</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>COMMAND_STRING</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>3</string>
+					</dict>
+					<key>4</key>
+					<dict>
+						<key>default value</key>
+						<string>/bin/sh</string>
+						<key>name</key>
+						<string>shell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>4</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>0</integer>
+				<key>location</key>
+				<string>491.500000:427.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>自动操作</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>运行AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>-- Function to show notificationon notify(message, title)	display notification message with title titleend notify-- Process fileson run {input, parameters}	repeat with current_file in input		-- Get the file name and extension from the path		set file_name to do shell script "basename " &amp; quoted form of (POSIX path of current_file)		set file_extension to do shell script "echo " &amp; quoted form of (POSIX path of current_file) &amp; " | sed 's/.*\\.//'"				if file_extension is "pdf" then			-- Notify user about opening the PDF			-- my notify("打开 PDF： " &amp; file_name, "PDF Viewer")						-- Open the PDF file			do shell script "open " &amp; quoted form of (POSIX path of current_file)						-- Notify user about the successful opening			-- my notify("已打开： " &amp; file_name, "PDF Viewer")		end if	end repeat	return inputend run</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>961C691C-7109-4CE7-BE52-6825FCDCD69F</string>
+				<key>Keywords</key>
+				<array>
+					<string>运行</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>0CD95AED-4797-4E91-8315-712487C93575</string>
+				<key>UUID</key>
+				<string>B6DEE624-5CA3-4AB8-8659-2F86BAFF18D9</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<integer>1</integer>
+				<key>location</key>
+				<string>491.500000:672.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict>
+		<key>44D6B033-FFD1-43AF-BF2C-848F0DA12278</key>
+		<dict>
+			<key>from</key>
+			<string>CDF727F9-E6B0-4467-BB3F-55987E3C499C - CDF727F9-E6B0-4467-BB3F-55987E3C499C</string>
+			<key>to</key>
+			<string>3F980085-46A1-4954-BAA2-E844D80B44FF - 3F980085-46A1-4954-BAA2-E844D80B44FF</string>
+		</dict>
+		<key>66E8C2D4-44D2-4407-B8CE-C9C1830EFA4D</key>
+		<dict>
+			<key>from</key>
+			<string>C357CEA6-8F82-49CD-A293-91039DDC47CE - C357CEA6-8F82-49CD-A293-91039DDC47CE</string>
+			<key>to</key>
+			<string>381279E3-44E3-4793-A47F-A7BC605A571B - 381279E3-44E3-4793-A47F-A7BC605A571B</string>
+		</dict>
+		<key>8594AA1D-A6F7-46C9-B3AF-91305B01C366</key>
+		<dict>
+			<key>from</key>
+			<string>CDF727F9-E6B0-4467-BB3F-55987E3C499C - CDF727F9-E6B0-4467-BB3F-55987E3C499C</string>
+			<key>to</key>
+			<string>B6DEE624-5CA3-4AB8-8659-2F86BAFF18D9 - B6DEE624-5CA3-4AB8-8659-2F86BAFF18D9</string>
+		</dict>
+		<key>DD3D026C-C614-4342-8998-1616FA91D116</key>
+		<dict>
+			<key>from</key>
+			<string>381279E3-44E3-4793-A47F-A7BC605A571B - 381279E3-44E3-4793-A47F-A7BC605A571B</string>
+			<key>to</key>
+			<string>CDF727F9-E6B0-4467-BB3F-55987E3C499C - CDF727F9-E6B0-4467-BB3F-55987E3C499C</string>
+		</dict>
+	</dict>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>folderActionFolderPath</key>
+		<string>~/Downloads</string>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.folderAction</string>
+	</dict>
+</dict>
+</plist>
