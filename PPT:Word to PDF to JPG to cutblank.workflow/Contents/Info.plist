@@ -8,17 +8,22 @@
 			<key>NSBackgroundColorName</key>
 			<string>background</string>
 			<key>NSIconName</key>
-			<string>NSActionTemplate</string>
+			<string>NSTouchBarColorPickerWheel</string>
 			<key>NSMenuItem</key>
 			<dict>
 				<key>default</key>
-				<string>运行python脚本</string>
+				<string>PPT:Word to PDF to JPG to cutblank</string>
 			</dict>
 			<key>NSMessage</key>
 			<string>runWorkflowAsService</string>
+			<key>NSRequiredContext</key>
+			<dict>
+				<key>NSApplicationIdentifier</key>
+				<string>com.apple.finder</string>
+			</dict>
 			<key>NSSendFileTypes</key>
 			<array>
-				<string>public.item</string>
+				<string>public.content</string>
 			</array>
 		</dict>
 	</array>

@@ -52,7 +52,7 @@
 				<dict>
 					<key>fileNames</key>
 					<array>
-						<string>~/Documents/0Article/2_Deposition/deposition_改编号为实际contour-45cm(高清)-标号32(加字母28)-字母22(标尺标题25单位20)-数字20-线条2榜.pptx</string>
+						<string>~/Downloads/图形摘要-圆摆 Matlab俯视图.docx</string>
 					</array>
 				</dict>
 				<key>BundleIdentifier</key>
@@ -156,7 +156,7 @@
 				<dict>
 					<key>fileNames</key>
 					<array>
-						<string>~/Documents/0Article/2_Deposition/d.pptx</string>
+						<string>~/Downloads/图形摘要.pptx</string>
 					</array>
 				</dict>
 				<key>BundleIdentifier</key>
@@ -259,7 +259,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	set theOutput to {}	set targetFolders to {} -- 用于记录所有创建的目标文件夹		-- 检查并处理 /ppt2jpgcut 文件夹	set parentDir to POSIX path of (do shell script "dirname " &amp; quoted form of (POSIX path of (item 1 of input)))	set targetDir to parentDir &amp; "/ppt2jpgcut"	try		-- 如果文件夹存在，删除它		if (do shell script "test -d " &amp; quoted form of targetDir &amp; " &amp;&amp; echo true || echo false") is "true" then			do shell script "rm -rf " &amp; quoted form of targetDir		end if		-- 创建新的 /ppt2jpgcut 文件夹		do shell script "mkdir -p " &amp; quoted form of targetDir	on error errMsg		display dialog "Failed to prepare /ppt2jpgcut folder. Error: " &amp; errMsg		return	end try		tell application "Microsoft PowerPoint"		launch		repeat with i in input			set t to i as string			if t ends with ".ppt" or t ends with ".pptx" then				set pdfPath to my makeNewPath(i)								-- 确保目标文件夹 (/4_ppt2jpg/1) 存在				set folderPath to POSIX path of (do shell script "dirname " &amp; quoted form of pdfPath)				try					do shell script "mkdir -p " &amp; quoted form of folderPath					-- 添加目标文件夹到记录					if targetFolders does not contain folderPath then						set end of targetFolders to folderPath					end if				on error errMsg					display dialog "Failed to create folder: " &amp; folderPath &amp; ". Error: " &amp; errMsg					return				end try								-- 检查文件是否已经打开				set isAlreadyOpen to false				try					tell application "Microsoft PowerPoint"						-- 获取所有打开的文件名						set openedPres to presentations						if openedPres is not {} then							-- 遍历所有打开的文档							repeat with activePres in openedPres								-- 获取 PowerPoint 打开的文件的名称								set openedFileName to name of activePres								set inputFileName to do shell script "basename " &amp; quoted form of (POSIX path of i)																-- 输出文件名，调试用								log "Opened file name: " &amp; openedFileName								log "Input file name: " &amp; inputFileName																-- 比较文件名								if openedFileName is equal to inputFileName then									set isAlreadyOpen to true									exit repeat								end if							end repeat						else							display dialog "No presentations are currently open." -- 如果 presentations 列表为空							return						end if					end tell				on error errMsg					display dialog "Error checking if the file is open: " &amp; errMsg					return				end try								-- 如果文件未打开，则打开文件				if not isAlreadyOpen then					try						open i						set activePres to active presentation						set wasOpenBefore to false					on error errMsg						display dialog "Error opening file: " &amp; t &amp; ". Error: " &amp; errMsg						return					end try				else					set wasOpenBefore to true				end if				-- display dialog "wasOpenBefore: " &amp; wasOpenBefore				try					-- 导出为 PDF					save activePres in (POSIX file pdfPath) as save as PDF					-- 如果文件是脚本打开的，关闭它					if not wasOpenBefore then						close active presentation saving no					end if					set end of theOutput to pdfPath				on error errMsg					display dialog "Error processing file: " &amp; t &amp; ". Error: " &amp; errMsg				end try			end if		end repeat	end tell		-- 返回所有目标文件夹的 Finder 项	set finderItems to {}	repeat with folderPath in targetFolders		set folderAlias to POSIX file folderPath as alias		set end of finderItems to folderAlias	end repeat		return finderItemsend runon makeNewPath(f)	-- 获取输入文件的父文件夹	set parentFolder to POSIX path of (do shell script "dirname " &amp; quoted form of (POSIX path of f))	-- 添加 "ppt2jpgcut/1" 到父文件夹	set newFolder to parentFolder &amp; "/ppt2jpgcut/1/"		-- 返回完整的 PDF 路径	if f ends with ".pptx" then		return newFolder &amp; (do shell script "basename -s .pptx " &amp; quoted form of (POSIX path of f)) &amp; ".pdf"	else		return newFolder &amp; (do shell script "basename -s .ppt " &amp; quoted form of (POSIX path of f)) &amp; ".pdf"	end ifend makeNewPath</string>
+					<string>on run {input, parameters}	set theOutput to {}	set targetFolders to {} -- 用于记录所有创建的目标文件夹		-- 检查并处理目标文件夹（pptword2pdfcut）	set parentDir to POSIX path of (do shell script "dirname " &amp; quoted form of (POSIX path of (item 1 of input)))	set targetDir to parentDir &amp; "/pptword2pdfcut/1"	try		-- 如果文件夹存在，删除它		if (do shell script "test -d " &amp; quoted form of targetDir &amp; " &amp;&amp; echo true || echo false") is "true" then			do shell script "rm -rf " &amp; quoted form of targetDir		end if		-- 创建新的目标文件夹		do shell script "mkdir -p " &amp; quoted form of targetDir	on error errMsg		display dialog "Failed to prepare target folder. Error: " &amp; errMsg		return	end try		-- 循环处理输入文件	repeat with i in input		set t to i as string		set fileExtension to do shell script "basename " &amp; quoted form of (POSIX path of i) &amp; " | sed 's/.*\\.//'"				-- 处理 Word 和 PowerPoint 文件		if fileExtension is in {"doc", "docx"} then			-- 如果是 Word 文件			set pdfPath to my makeNewPath(i, "word", targetDir)			tell application "Microsoft Word"				open i				set activeDoc to active document				-- 使用正确的保存命令				save as activeDoc file name (POSIX file pdfPath) file format format PDF				close active document saving no			end tell		else if fileExtension is in {"ppt", "pptx"} then			-- 如果是 PowerPoint 文件			set pdfPath to my makeNewPath(i, "ppt", targetDir)			tell application "Microsoft PowerPoint"				open i				set activePres to active presentation				-- 使用正确的保存命令				save activePres in (POSIX file pdfPath) as save as PDF				close active presentation saving no			end tell		end if				-- 将 PDF 路径添加到输出列表		set end of theOutput to pdfPath	end repeat		-- 返回所有目标文件夹的 Finder 项	set finderItems to {}	set folderAlias to POSIX file targetDir as alias	set end of finderItems to folderAlias		return finderItemsend runon makeNewPath(f, type, targetDir)	-- 获取输入文件的基本文件名	set fileName to do shell script "basename " &amp; quoted form of (POSIX path of f)		-- 根据文件类型选择正确的 PDF 路径	if type is "word" then		-- 处理 Word 文件		if f ends with ".docx" then			return targetDir &amp; "/" &amp; (do shell script "basename -s .docx " &amp; quoted form of (POSIX path of f)) &amp; ".pdf"		else			return targetDir &amp; "/" &amp; (do shell script "basename -s .doc " &amp; quoted form of (POSIX path of f)) &amp; ".pdf"		end if	else if type is "ppt" then		-- 处理 PowerPoint 文件		if f ends with ".pptx" then			return targetDir &amp; "/" &amp; (do shell script "basename -s .pptx " &amp; quoted form of (POSIX path of f)) &amp; ".pdf"		else			return targetDir &amp; "/" &amp; (do shell script "basename -s .ppt " &amp; quoted form of (POSIX path of f)) &amp; ".pdf"		end if	end ifend makeNewPath</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -276,15 +276,15 @@
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
 				<key>InputUUID</key>
-				<string>903DAB9F-26E5-4324-86A9-7556FFA5253C</string>
+				<string>09BDEB64-9233-41C9-A78C-4299AC268F6B</string>
 				<key>Keywords</key>
 				<array>
 					<string>运行</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>3E9707B0-C2F2-432B-980E-F09BF2C1E4B1</string>
+				<string>E70EEC4F-16DD-4614-AE3A-635D41726D2B</string>
 				<key>UUID</key>
-				<string>CDFEDB47-4114-463D-A59F-9A95F7BE25C3</string>
+				<string>3BF7CBCE-9EA9-4574-B852-22E0AEBBA4FA</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -1423,11 +1423,30 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>
-# Get file and folder paths from arguments
+					<string># Get file and folder paths from arguments
 filePath="$1"
 folderPath=$(dirname "$filePath")
 parentFolderPath=$(dirname "$folderPath")
+
+# Ask user for output format using AppleScript
+outputFormat=$(osascript -e 'tell application "System Events" to display dialog "Choose the output format:" buttons {"TIFF", "JPEG"} default button "TIFF" with icon 1' \
+    -e 'button returned of result')
+
+# Ask user for resize factor using AppleScript
+resizeFactor=$(osascript -e 'tell application "System Events" to display dialog "Enter the resize factor (e.g., 0.5 for half resolution):" default answer "1" with icon 1' \
+    -e 'text returned of result')
+
+# Check if user canceled or input is invalid for output format
+if [[ "$outputFormat" != "TIFF" &amp;&amp; "$outputFormat" != "JPEG" ]]; then
+    echo "Invalid choice or user canceled. Exiting..."
+    exit 1
+fi
+
+# Validate resize factor
+if ! [[ "$resizeFactor" =~ ^[0-9]+(\.[0-9]+)?$ ]]; then
+    echo "Invalid resize factor. Exiting..."
+    exit 1
+fi
 
 # Create the jpg_cut.py file in the parent folder
 cat &lt;&lt;EOF &gt; "$parentFolderPath/jpg_cut.py"
@@ -1436,8 +1455,9 @@ from concurrent.futures import ThreadPoolExecutor
 from PIL import Image
 import numpy as np
 import os
+import sys
 
-def crop_white(image_path, output_path, threshold=240):
+def crop_white(image_path, output_path, threshold=240, output_format="TIFF", resize_factor=0.5):
     img = Image.open(image_path).convert("RGB")
     img_np = np.array(img)
     mask = np.all(img_np &lt; threshold, axis=-1)
@@ -1447,9 +1467,16 @@ def crop_white(image_path, output_path, threshold=240):
         y_min, x_min = coords.min(axis=0)
         y_max, x_max = coords.max(axis=0) + 1
         cropped_img = img.crop((x_min, y_min, x_max, y_max))
-        cropped_img.save(output_path)
+        
+        # 降低分辨率
+        new_width = int(cropped_img.width * resize_factor)
+        new_height = int(cropped_img.height * resize_factor)
+        resized_img = cropped_img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-def batch_crop_images(input_folder, output_folder, threshold=240, max_workers=4):
+        # 保存为指定格式
+        resized_img.save(output_path, format=output_format)
+
+def batch_crop_images(input_folder, output_folder, threshold=240, max_workers=4, output_format="TIFF", resize_factor=0.5):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
@@ -1459,8 +1486,9 @@ def batch_crop_images(input_folder, output_folder, threshold=240, max_workers=4)
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         for filename in files:
             input_path = os.path.join(input_folder, filename)
-            output_path = os.path.join(output_folder, filename)
-            tasks.append(executor.submit(crop_white, input_path, output_path, threshold))
+            output_filename = os.path.splitext(filename)[0] + (".tiff" if output_format == "TIFF" else ".jpeg")
+            output_path = os.path.join(output_folder, output_filename)
+            tasks.append(executor.submit(crop_white, input_path, output_path, threshold, output_format, resize_factor))
 
         for future in tasks:
             future.result()  # 等待所有任务完成
@@ -1469,11 +1497,15 @@ if __name__ == "__main__":
     current_dir = os.path.dirname(os.path.abspath(__file__))
     input_folder = os.path.join(current_dir, '1')
     output_folder = os.path.join(current_dir, '2')
-    batch_crop_images(input_folder, output_folder, max_workers=8)
+
+    # 从命令行参数获取输出格式
+    output_format = sys.argv[1].upper() if len(sys.argv) &gt; 1 else "TIFF"
+    resize_factor = float(sys.argv[2]) if len(sys.argv) &gt; 2 else 0.5
+    batch_crop_images(input_folder, output_folder, max_workers=8, output_format=output_format, resize_factor=resize_factor)
 EOF
 
-# Execute the Python script
-command="/opt/homebrew/bin/python3 \"$parentFolderPath/jpg_cut.py\" \"$filePath\""
+# Execute the Python script with the selected format and resize factor
+command="/opt/homebrew/bin/python3 \"$parentFolderPath/jpg_cut.py\" \"$outputFormat\" \"$resizeFactor\""
 eval $command</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
@@ -1499,7 +1531,7 @@ eval $command</string>
 				<key>Class Name</key>
 				<string>RunShellScriptAction</string>
 				<key>InputUUID</key>
-				<string>98714C95-8FC0-48C0-8866-0AA2A6E7C48A</string>
+				<string>BC5A7C07-5849-4E1E-9E47-67A10CC5841D</string>
 				<key>Keywords</key>
 				<array>
 					<string>Shell</string>
@@ -1509,9 +1541,9 @@ eval $command</string>
 					<string>Unix</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>D1E1A5E4-B715-42FE-9AEF-6D801607297D</string>
+				<string>3E015D27-2B9F-4AC4-916B-FB15B5811F17</string>
 				<key>UUID</key>
-				<string>5FC8796F-F4A5-464F-9D9E-026BCCF987C4</string>
+				<string>C308D678-16F9-40FF-B50C-C757D86DBAC0</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -1745,7 +1777,7 @@ eval $command</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {inputPath}	try		-- 提取 alias 类型路径		if class of inputPath is list and (count of inputPath) &gt; 0 then			set pathItem to item 1 of inputPath			if class of pathItem is alias then				set posixPath to POSIX path of pathItem			else				error "列表中的项目不是有效的 alias 类型。"			end if		else			error "输入不是有效的列表或为空。"		end if				-- 转换为 Finder 可用路径		set hfsPath to POSIX file posixPath				-- 打开 Finder 并跳转到路径		tell application "Finder"			set currentWindow to Finder window 1			set target of currentWindow to hfsPath		end tell			on error errMsg		display dialog "发生错误：" &amp; errMsg buttons {"OK"} default button 1	end tryend run</string>
+					<string>on run {inputPath}	try		-- 检查输入是否为列表并提取路径		if class of inputPath is list and (count of inputPath) &gt; 0 then			set pathItem to item 1 of inputPath			if class of pathItem is alias then				set posixPath to POSIX path of pathItem			else				error "列表中的项目不是有效的 alias 类型。"			end if		else			error "输入不是有效的列表或为空。"		end if				-- 检查路径末尾是否为 '1/'，并替换为 '2/'		if posixPath ends with "1/" then			set posixPath to text 1 thru -3 of posixPath &amp; "2/"		else			error "路径末尾不是 '1/'，无法替换为 '2/'。"		end if				-- 转换为 Finder 可用的 HFS 路径		set hfsPath to POSIX file posixPath				-- 打开 Finder 并设置路径		tell application "Finder"			activate			set currentWindow to Finder window 1			set target of currentWindow to hfsPath			set currentView to column view -- 强制切换到列视图			delay 0.5 -- 等待 Finder 加载完成		end tell				-- 使用系统事件触发快捷键		tell application "System Events"			tell process "Finder"				keystroke "o" using {command down, option down} -- 快捷键：Command + Option + o			end tell		end tell			on error errMsg		-- 捕获错误并提示		display dialog "发生错误：" &amp; errMsg buttons {"OK"} default button 1	end tryend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -1762,15 +1794,15 @@ eval $command</string>
 				<key>Class Name</key>
 				<string>RunScriptAction</string>
 				<key>InputUUID</key>
-				<string>28B06BF4-CCF7-4F69-B0B2-48A760A08B97</string>
+				<string>AD17F63A-31F5-4F4C-8A5E-F6AC592E78C2</string>
 				<key>Keywords</key>
 				<array>
 					<string>运行</string>
 				</array>
 				<key>OutputUUID</key>
-				<string>48141115-FC22-40F1-98F4-BDA896F1CB57</string>
+				<string>8D20E592-0514-42E8-A177-3FA29B568335</string>
 				<key>UUID</key>
-				<string>B2690992-BD44-4064-9EFA-0BA5EE0A259A</string>
+				<string>F73A2716-46BE-43EC-9102-8C8BF31E6F47</string>
 				<key>UnlocalizedApplications</key>
 				<array>
 					<string>Automator</string>
@@ -1809,82 +1841,82 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>122F119D-EA93-43FF-801D-DABACE6A002D</key>
-		<dict>
-			<key>from</key>
-			<string>CDFEDB47-4114-463D-A59F-9A95F7BE25C3 - CDFEDB47-4114-463D-A59F-9A95F7BE25C3</string>
-			<key>to</key>
-			<string>4D4FCB15-8387-4B24-94F2-06FC9F995D10 - 4D4FCB15-8387-4B24-94F2-06FC9F995D10</string>
-		</dict>
-		<key>1969143F-1415-417B-A0F1-AE32E4927E69</key>
-		<dict>
-			<key>from</key>
-			<string>208C8AD7-E4DF-4AB2-8A7B-2F08C5E3C94A - 208C8AD7-E4DF-4AB2-8A7B-2F08C5E3C94A</string>
-			<key>to</key>
-			<string>5A274C31-1576-44D0-B536-ACF4EEEC805A - 5A274C31-1576-44D0-B536-ACF4EEEC805A</string>
-		</dict>
-		<key>3A5A7BDA-229D-488F-ACFA-53A10720B797</key>
+		<key>4945CF21-358B-4008-82A9-8B46DFB50C28</key>
 		<dict>
 			<key>from</key>
 			<string>C556DEF1-A8FD-4CF7-B0A6-8B7752F7E909 - C556DEF1-A8FD-4CF7-B0A6-8B7752F7E909</string>
 			<key>to</key>
 			<string>208C8AD7-E4DF-4AB2-8A7B-2F08C5E3C94A - 208C8AD7-E4DF-4AB2-8A7B-2F08C5E3C94A</string>
 		</dict>
-		<key>3C9836ED-12BF-472E-996B-36A5C2350F98</key>
+		<key>5B7FABB1-4893-4C14-9533-FC1FD3FF39F5</key>
 		<dict>
 			<key>from</key>
-			<string>5A274C31-1576-44D0-B536-ACF4EEEC805A - 5A274C31-1576-44D0-B536-ACF4EEEC805A</string>
+			<string>4D4FCB15-8387-4B24-94F2-06FC9F995D10 - 4D4FCB15-8387-4B24-94F2-06FC9F995D10</string>
 			<key>to</key>
-			<string>5E3768BC-6015-4EB0-9993-C0F7DD7B535F - 5E3768BC-6015-4EB0-9993-C0F7DD7B535F</string>
+			<string>6B91EF77-91E5-4667-91B0-83B879BBDE60 - 6B91EF77-91E5-4667-91B0-83B879BBDE60</string>
 		</dict>
-		<key>56CC3E3A-57B8-4A7C-8CB9-3E9989890FDB</key>
-		<dict>
-			<key>from</key>
-			<string>5FC8796F-F4A5-464F-9D9E-026BCCF987C4 - 5FC8796F-F4A5-464F-9D9E-026BCCF987C4</string>
-			<key>to</key>
-			<string>5CC06ECC-B019-496D-9290-27CB3545BD06 - 5CC06ECC-B019-496D-9290-27CB3545BD06</string>
-		</dict>
-		<key>AAAAAC2E-B8BC-443D-A270-94E831EFDA8C</key>
-		<dict>
-			<key>from</key>
-			<string>EB205F1B-3D03-46B3-B1F6-E070D3895C07 - EB205F1B-3D03-46B3-B1F6-E070D3895C07</string>
-			<key>to</key>
-			<string>CDFEDB47-4114-463D-A59F-9A95F7BE25C3 - CDFEDB47-4114-463D-A59F-9A95F7BE25C3</string>
-		</dict>
-		<key>AAE4E436-A2C6-4409-9F61-64BBBA917C62</key>
-		<dict>
-			<key>from</key>
-			<string>5E3768BC-6015-4EB0-9993-C0F7DD7B535F - 5E3768BC-6015-4EB0-9993-C0F7DD7B535F</string>
-			<key>to</key>
-			<string>5FC8796F-F4A5-464F-9D9E-026BCCF987C4 - 5FC8796F-F4A5-464F-9D9E-026BCCF987C4</string>
-		</dict>
-		<key>AB7EA288-B60A-439B-A45D-8C532C41735A</key>
+		<key>713BD8C5-6757-480D-9D78-32BB09F4DD51</key>
 		<dict>
 			<key>from</key>
 			<string>6FC7144C-32D3-40DE-895D-BECA94D84DD8 - 6FC7144C-32D3-40DE-895D-BECA94D84DD8</string>
 			<key>to</key>
 			<string>EB205F1B-3D03-46B3-B1F6-E070D3895C07 - EB205F1B-3D03-46B3-B1F6-E070D3895C07</string>
 		</dict>
-		<key>B037AEC4-DED4-408F-98FE-D67B142A6549</key>
+		<key>7D22ABC8-8C75-4F17-85BF-B11D7456DAD7</key>
 		<dict>
 			<key>from</key>
-			<string>4D4FCB15-8387-4B24-94F2-06FC9F995D10 - 4D4FCB15-8387-4B24-94F2-06FC9F995D10</string>
+			<string>5CC06ECC-B019-496D-9290-27CB3545BD06 - 5CC06ECC-B019-496D-9290-27CB3545BD06</string>
 			<key>to</key>
-			<string>6B91EF77-91E5-4667-91B0-83B879BBDE60 - 6B91EF77-91E5-4667-91B0-83B879BBDE60</string>
+			<string>F73A2716-46BE-43EC-9102-8C8BF31E6F47 - F73A2716-46BE-43EC-9102-8C8BF31E6F47</string>
 		</dict>
-		<key>C16D15A2-09EE-466E-85C4-9650DB5EDC1E</key>
+		<key>8EBF305C-44D2-444C-AF57-75E28723685E</key>
+		<dict>
+			<key>from</key>
+			<string>3BF7CBCE-9EA9-4574-B852-22E0AEBBA4FA - 3BF7CBCE-9EA9-4574-B852-22E0AEBBA4FA</string>
+			<key>to</key>
+			<string>4D4FCB15-8387-4B24-94F2-06FC9F995D10 - 4D4FCB15-8387-4B24-94F2-06FC9F995D10</string>
+		</dict>
+		<key>913A950D-CD4E-4A38-929E-28C7CB505635</key>
+		<dict>
+			<key>from</key>
+			<string>EB205F1B-3D03-46B3-B1F6-E070D3895C07 - EB205F1B-3D03-46B3-B1F6-E070D3895C07</string>
+			<key>to</key>
+			<string>3BF7CBCE-9EA9-4574-B852-22E0AEBBA4FA - 3BF7CBCE-9EA9-4574-B852-22E0AEBBA4FA</string>
+		</dict>
+		<key>93D5FD4F-1D1C-4682-BF3B-70EC3EBAF5B5</key>
+		<dict>
+			<key>from</key>
+			<string>5A274C31-1576-44D0-B536-ACF4EEEC805A - 5A274C31-1576-44D0-B536-ACF4EEEC805A</string>
+			<key>to</key>
+			<string>5E3768BC-6015-4EB0-9993-C0F7DD7B535F - 5E3768BC-6015-4EB0-9993-C0F7DD7B535F</string>
+		</dict>
+		<key>9E99EFD9-FFBF-4956-8F53-03CA8A74A7D3</key>
 		<dict>
 			<key>from</key>
 			<string>6B91EF77-91E5-4667-91B0-83B879BBDE60 - 6B91EF77-91E5-4667-91B0-83B879BBDE60</string>
 			<key>to</key>
 			<string>C556DEF1-A8FD-4CF7-B0A6-8B7752F7E909 - C556DEF1-A8FD-4CF7-B0A6-8B7752F7E909</string>
 		</dict>
-		<key>E39D4A99-8E94-4963-A063-E798801C4A1D</key>
+		<key>B2D50194-5ACF-4572-BCB5-9BA08546E5D4</key>
 		<dict>
 			<key>from</key>
-			<string>5CC06ECC-B019-496D-9290-27CB3545BD06 - 5CC06ECC-B019-496D-9290-27CB3545BD06</string>
+			<string>C308D678-16F9-40FF-B50C-C757D86DBAC0 - C308D678-16F9-40FF-B50C-C757D86DBAC0</string>
 			<key>to</key>
-			<string>B2690992-BD44-4064-9EFA-0BA5EE0A259A - B2690992-BD44-4064-9EFA-0BA5EE0A259A</string>
+			<string>5CC06ECC-B019-496D-9290-27CB3545BD06 - 5CC06ECC-B019-496D-9290-27CB3545BD06</string>
+		</dict>
+		<key>DB70F35C-1FC9-4268-8C3F-855D44B4874D</key>
+		<dict>
+			<key>from</key>
+			<string>5E3768BC-6015-4EB0-9993-C0F7DD7B535F - 5E3768BC-6015-4EB0-9993-C0F7DD7B535F</string>
+			<key>to</key>
+			<string>C308D678-16F9-40FF-B50C-C757D86DBAC0 - C308D678-16F9-40FF-B50C-C757D86DBAC0</string>
+		</dict>
+		<key>F8CF32CD-628C-40DE-9FCE-508092ABBA8E</key>
+		<dict>
+			<key>from</key>
+			<string>208C8AD7-E4DF-4AB2-8A7B-2F08C5E3C94A - 208C8AD7-E4DF-4AB2-8A7B-2F08C5E3C94A</string>
+			<key>to</key>
+			<string>5A274C31-1576-44D0-B536-ACF4EEEC805A - 5A274C31-1576-44D0-B536-ACF4EEEC805A</string>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1897,7 +1929,7 @@ end run</string>
 			<key>name</key>
 			<string>路径</string>
 			<key>value</key>
-			<string>/Users/jiaqihan/Documents/0Article/2_Deposition/ppt2jpgcut/1</string>
+			<string>/Users/jiaqihan/Downloads/pptword2pdfcut/1</string>
 		</dict>
 	</array>
 	<key>workflowMetaData</key>

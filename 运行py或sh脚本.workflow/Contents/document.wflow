@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AMApplicationBuild</key>
-	<string>526</string>
+	<string>527</string>
 	<key>AMApplicationVersion</key>
 	<string>2.10</string>
 	<key>AMDocumentVersion</key>
@@ -77,12 +77,10 @@
 				</array>
 				<key>arguments</key>
 				<dict/>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>573.000000:188.000000</string>
+				<string>207.000000:68.000000</string>
 			</dict>
 			<key>isViewVisible</key>
 			<integer>1</integer>
@@ -136,7 +134,20 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>COMMAND_STRING</key>
-					<string>/opt/homebrew/bin/python3 "$1"</string>
+					<string>#!/bin/bash
+
+# 获取文件扩展名
+ext="${1##*.}"
+
+# 判断文件类型并运行相应的解释器
+if [[ "$ext" == "sh" ]]; then
+    /bin/sh "$1"
+elif [[ "$ext" == "py" ]]; then
+    /opt/homebrew/bin/python3 "$1"
+else
+    echo "Unsupported file type: $1"
+    exit 1
+fi</string>
 					<key>CheckedForUserDefaultShell</key>
 					<true/>
 					<key>inputMethod</key>
@@ -246,12 +257,10 @@
 						<string>4</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<integer>1</integer>
 				<key>location</key>
-				<string>573.000000:550.000000</string>
+				<string>573.000000:370.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -261,7 +270,7 @@
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>F6929B6C-97A8-4CE3-B92E-8A7C5D5CABFF</key>
+		<key>4BA0B93A-15FC-4FCA-966C-5DB71287CB13</key>
 		<dict>
 			<key>from</key>
 			<string>D7AB2C16-6F96-4297-A99A-5E2B3CCD6D73 - D7AB2C16-6F96-4297-A99A-5E2B3CCD6D73</string>
